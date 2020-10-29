@@ -1,0 +1,47 @@
+<form action="/" method="POST">
+    <div class="form-group">
+        <label for="item">Item:</label>
+        <input type="text" class="form-control" name="item" id="item" placeholder="Please input an intem">
+    </div>
+    <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input type="number" class="form-control" name="quantity" id="quantity" min="1" placeholder="Please enter at least 1">
+    </div>
+    <div class="form-group">
+        <label for="unitPrice">Unit Price:</label>
+        <div class="input-group-prepend">
+            <div class="input-group-text">$</div>
+            <input type="text" class="form-control" name="unitPrice" id="unitPrice" placeholder="Please input price">
+        </div>
+    </div>
+    <div class="form-group d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+    <input type="hidden" name="inventoryState" value={{inventoryState}}>
+</form>
+
+<div>
+    <hr class="mt-2">
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Unit Price ($)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#if hasInventory}}
+            {{#each inventory}}
+                <tr>
+                    <th scope="row">{{this.item}}</th>
+                    <td>{{this.quantity}}</td>
+                    <td>{{this.unitPrice}}</td>
+                </tr>
+            {{/each}}
+        {{/if}}
+    </tbody>
+</table>
